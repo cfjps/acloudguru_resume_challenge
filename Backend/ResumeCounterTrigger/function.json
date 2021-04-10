@@ -1,0 +1,40 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ],
+      "route": "resumecounter/{id}"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "doc",
+      "databaseName": "ResumeCounter",
+      "collectionName": "counter",
+      "createIfNotExists": "true",
+      "connectionStringSetting": "AzureCosmosDBConnectionString",
+      "sqlQuery": "SELECT * from c WHERE c.id={id}"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "doccount",
+      "databaseName": "ResumeCounter",
+      "collectionName": "counter",
+      "createIfNotExists": "true",
+      "connectionStringSetting": "AzureCosmosDBConnectionString"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ]
+}
