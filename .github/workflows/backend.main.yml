@@ -41,6 +41,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt --target=".python_packages/lib/site-packages"
         popd
+        
+    - name: Test CounterTrigger with pytest
+      run: |
+        pip install pytest
+        pip install pytest-cov
+        pytest TestCounterTrigger.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+        
     - name: 'Run Azure Functions Action'
       uses: Azure/functions-action@v1
       id: fa
