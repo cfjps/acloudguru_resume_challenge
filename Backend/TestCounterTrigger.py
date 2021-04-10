@@ -12,4 +12,4 @@ def main():
     
 
 def test_main():
-    assert main() == 71
+    assert main() == 74
